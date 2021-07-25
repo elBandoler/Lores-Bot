@@ -24,7 +24,7 @@ export function setTicketChannel(message:Message) {
                 data.ticketMessage = m.id
                 fs.writeFileSync(configPath, JSON.stringify(data), 'utf8')
                 m.react('🎫')
-                m.pin().then((pinmessage:Message) => pinmessage.delete())
+                m.pin()
                 InitializeTickets()
             }
         ).catch((reason:any) => console.log(`sending a message to the channel was unsuccessful. Reason: ${reason}`))
@@ -148,15 +148,17 @@ export function ticketCreate(user : User | PartialUser, server : Guild, reaction
             type: 'text', 
             topic: `Ticket created by ${user.username}#${user.discriminator}`, 
             parent: data.ticketCategory,
-            
-            permissionOverwrites: [
+            /*permissionOverwrites: [
                 { id: user.id, allow: ['VIEW_CHANNEL', 'ADD_REACTIONS', 'READ_MESSAGE_HISTORY', 'SEND_MESSAGES', 'ATTACH_FILES', 'EMBED_LINKS'] },
                 { id: server.id, deny: ['VIEW_CHANNEL']}
-            ]
+            ]*/
         }
     )
     .then((ch : TextChannel) => 
         {
+            ch.updateOverwrite(server.id, { VIEW_CHANNEL: false });
+            ch.updateOverwrite(user.id, { VIEW_CHANNEL: true, ADD_REACTIONS: true, READ_MESSAGE_HISTORY: true, SEND_MESSAGES: true, ATTACH_FILES: true, EMBED_LINKS: true} )
+            ch.lockPermissions()
             ch.send(`Hey, <@${user.id}>, this is your ticket! Please describe your issue.`)
             reaction.users.remove(user.id)
         }
