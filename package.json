@@ -1,0 +1,24 @@
+{
+  "name": "lorebot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc --build",
+    "clean": "tsc --build --clean",
+    "dev": "nodemon src/index.ts --watch ./src",
+    "prod": "node dist/index.js"
+  },
+  "keywords": [],
+  "author": "elBandoler",
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "@types/dotenv": "^8.2.0",
+    "@types/node": "^16.4.2",
+    "nodemon": "^2.0.12"
+  },
+  "dependencies": {
+    "discord.js": "^12.5.3",
+    "dotenv": "^10.0.0"
+  }
+}
