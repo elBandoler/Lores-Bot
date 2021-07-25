@@ -8,7 +8,6 @@ export class EmbedBuilder {
     /** actual Embed stuff */
     title : string
     color : string
-    footer : string
     content : string
     targetChannelID : string
 
@@ -19,7 +18,6 @@ export class EmbedBuilder {
 
         this.title = "";
         this.color = "";
-        this.footer = "";
         this.content = "";
         this.targetChannelID = "";
     }
@@ -29,7 +27,6 @@ export enum EmbedBuilderState {
     REQUESTING_TITLE,
     REQUESTING_CONTENT,
     REQUESTING_COLOR,
-    REQUESTING_FOOTER,
     REQUESTING_TARGET_CHANNEL,
     READY
 }

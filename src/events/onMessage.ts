@@ -1,4 +1,4 @@
-import { cancelEmbed, embedHolder, requestColor, requestFooter, requestTitle, requestTargetChannel, sendEmbed, requestContent } from '../commands/embedMaker'
+import { cancelEmbed, embedHolder, requestColor, requestTitle, requestTargetChannel, sendEmbed, requestContent } from '../commands/embedMaker'
 import * as Discord from 'discord.js'
 import { EmbedBuilderState } from '../models/EmbedBuilder'
 import { onCommand } from './onCommand';
@@ -22,11 +22,6 @@ export function onMessage(message : Discord.Message) {
 			{
 				case EmbedBuilderState.REQUESTING_TITLE: {
 					requestTitle(message)
-					break;
-				}
-
-				case EmbedBuilderState.REQUESTING_FOOTER: {
-					requestFooter(message)
 					break;
 				}
 
