@@ -1,8 +1,9 @@
 import { Channel, Guild, GuildChannel, Message, MessageReaction, PartialUser, TextChannel, User } from "discord.js"
 import * as fs from 'fs';
 import {client} from '../index'
+import path from 'path';
 
-const configPath = __dirname+'/../ticketConfig.json'
+const configPath = path.join(__dirname, '../ticketConfig.json');
 let data = JSON.parse(fs.readFileSync(configPath,'utf8')) as TicketConfig
 
 /**
