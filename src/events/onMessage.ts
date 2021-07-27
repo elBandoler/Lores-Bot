@@ -1,4 +1,4 @@
-import { cancelEmbed, embedHolder, requestColor, requestTitle, requestTargetChannel, sendEmbed, requestContent } from '../commands/embedMaker'
+import { cancelEmbed, embedHolder, requestColor, requestTitle, requestTargetChannel, sendEmbed, requestFieldName, requestAmountOfFields, requestFieldValue, requestFieldInline } from '../commands/embedMaker'
 import * as Discord from 'discord.js'
 import { EmbedBuilderState } from '../models/EmbedBuilder'
 import { onCommand } from './onCommand';
@@ -30,8 +30,23 @@ export function onMessage(message : Discord.Message) {
 					break;
 				}
 
-				case EmbedBuilderState.REQUESTING_CONTENT:{
-					requestContent(message)
+				case EmbedBuilderState.REQUESTING_AMOUNT_OF_FIELDS:{
+					requestAmountOfFields(message)
+					break;
+				}
+
+				case EmbedBuilderState.REQUESTING_FIELD_NAME:{
+					requestFieldName(message)
+					break;
+				}
+
+				case EmbedBuilderState.REQUESTING_FIELD_VALUE:{
+					requestFieldValue(message)
+					break;
+				}
+
+				case EmbedBuilderState.REQUESTING_FIELD_INLINE:{
+					requestFieldInline(message)
 					break;
 				}
 
